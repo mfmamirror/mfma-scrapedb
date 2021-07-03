@@ -8,6 +8,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.9"
 sqlalchemy = "1.4.20"
+alembic = "1.6.5"
 
 [tool.poetry.dev-dependencies]
 
