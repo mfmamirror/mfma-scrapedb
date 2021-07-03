@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_USER: scrapedb
+      POSTGRES_PASSWORD: scrapedb
+      POSTGRES_DATABASE: scrapedb
+    volumes:
+      - "postgres-data:/var/lib/postgresql/"
+
+  dev:
+    build:
+      context: .
+      args:
+        USER_ID: ${USER_ID:-1001}
+        GROUP_ID: ${GROUP_ID:-1001}
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://scrapedb:scrapedb@postgres/scrapedb
+
+volumes:
+  postgres-data:

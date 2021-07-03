@@ -33,6 +33,7 @@ def db_url_from_env():
     url = os.environ.get("DATABASE_URL")
     if url is None:
         raise Exception("Environment variable DATABASE_URL is required")
+    return url
 
 
 def run_migrations_offline():
